@@ -11,8 +11,8 @@
 - Перегляд таблиці лідерів  
 - Зміна налаштувань користувача  
 
-Frontend: **Vue3 + TailwindCSS + shadcn-ui**  
-Backend: **Laravel 10 + PostgreSQL**  
+Frontend: **Vue3 + InertiaJS + TailwindCSS + shadcn-ui**  
+Backend: **Laravel 12 + PostgreSQL**  
 
 ---
 
