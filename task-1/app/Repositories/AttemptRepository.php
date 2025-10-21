@@ -6,6 +6,7 @@ use App\Interfaces\AttemptRepositoryInterface;
 use App\Models\AttemptAnswers;
 use App\Models\Category;
 use App\Models\QuizAttempt;
+use App\Services\QuizScoreManager;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -23,32 +24,7 @@ class AttemptRepository implements AttemptRepositoryInterface
 
             $questions = $category->questions()->with('answers')->get();
             $totalQuestions = $questions->count();
-            $score = 0;
-
-            foreach ($questions as $question) {
-                $selectedAnswers = collect($data['answers'][$question->id] ?? []);
-
-                if ($selectedAnswers->isEmpty()) {
-                    continue;
-                }
-
-                $correctAnswers = $question->answers->where('is_correct', true)->pluck('id');
-
-                $allCorrectSelected = $correctAnswers->diff($selectedAnswers)->isEmpty();
-                $onlyCorrectSelected = $selectedAnswers->diff($correctAnswers)->isEmpty();
-
-                if ($question->is_multiple_choice) {
-                    if ($allCorrectSelected && $onlyCorrectSelected) {
-                        $score += 1;
-                    } elseif ($onlyCorrectSelected) {
-                        $score += 0.5;
-                    }
-                } else {
-                    if ($onlyCorrectSelected && $allCorrectSelected) {
-                        $score += 1;
-                    }
-                }
-            }
+            $score = QuizScoreManager::getInstance()->calculateScore($data['answers'] ?? [], $questions);
 
             $attempt = QuizAttempt::where('user_id', $user->id)
                 ->where('category_id', $category->id)

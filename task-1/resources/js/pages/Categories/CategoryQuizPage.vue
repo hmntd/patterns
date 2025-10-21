@@ -31,7 +31,6 @@ const fetchCategory = async () => {
 }
 
 const toggleAnswer = (questionId: number, answerId: number, multi: boolean) => {
-    console.log(answerId);
     if (!answers.value[questionId]) answers.value[questionId] = [];
 
     if (multi) {

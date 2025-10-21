@@ -36,7 +36,6 @@ const fetchLeaders = async () => {
         const data = await res.json();
 
         leaders.value = data.leaders ?? data;
-        console.log(leaders.value);
         categoryName.value = data.category?.name ?? 'Leaderboard';
     } catch (err) {
         console.error(err)

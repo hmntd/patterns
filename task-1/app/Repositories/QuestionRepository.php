@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\QuestionRepositoryInterface;
 use App\Models\Question;
+use App\Services\QuestionFactory;
 use Illuminate\Support\Collection;
 
 class QuestionRepository implements QuestionRepositoryInterface
@@ -15,7 +16,7 @@ class QuestionRepository implements QuestionRepositoryInterface
 
     public function create(array $data): Question
     {
-        return Question::create($data);
+        return QuestionFactory::create($data['is_multiple_choice'] ? 'multiple' : 'single', $data);
     }
 
     public function show(Question $question): Question
