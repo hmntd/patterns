@@ -1,0 +1,25 @@
+﻿using patterns_lab2_2.Interfaces;
+using patterns_lab2_2.Models.Weapons;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace patterns_lab2_2.Models.Persons
+{
+    public class Elf: Person
+    {
+        public Elf()
+        {
+            Type = "Elf";
+        }
+        public override IWeapon Weapon => new Bow();
+        public override string MovementMethod => "Sprinting";
+        public override void Move(Point destination)
+        {
+            SetPosition(destination);
+        }
+    }
+}
