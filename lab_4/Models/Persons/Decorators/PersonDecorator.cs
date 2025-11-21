@@ -1,4 +1,5 @@
-﻿using patterns_lab2_2.Interfaces;
+﻿using patterns_lab2_2.Commands;
+using patterns_lab2_2.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +16,42 @@ namespace patterns_lab2_2.Models.Persons.Decorators
         {
             _wrappedPerson = wrappedPerson;
             _wrappedPerson.PositionChanged += OnWrappedPersonPositionChanged;
+            _wrappedPerson.HealthChanged += OnWrappedPersonHealthChanged;
         }
+        public override int Health
+        {
+            get => _wrappedPerson.Health;
+            set => _wrappedPerson.Health = value;
+        }
+
+        public override Point Position
+        {
+            get => _wrappedPerson.Position; 
+            set => _wrappedPerson.Position = value;
+        }
+
+        public override string Type { get => _wrappedPerson.Type; set => _wrappedPerson.Type = value; }
+
+        public override IWeapon Weapon => _wrappedPerson.Weapon;
+        public override IMovement Movement => _wrappedPerson.Movement;
 
         private void OnWrappedPersonPositionChanged()
         {
             InvokePositionChanged();
         }
 
-        public override IWeapon Weapon => _wrappedPerson.Weapon;
-        public override IMovement Movement=> _wrappedPerson.Movement;
+        private void OnWrappedPersonHealthChanged()
+        {
+            InvokeHealthChanged();
+        }
 
-        public new void SetPosition(Point newPosition)
+        public override void SetMediator(IBattleMediator mediator)
+        {
+            base.SetMediator(mediator);
+            _wrappedPerson.SetMediator(mediator);
+        }
+
+        public override void SetPosition(Point newPosition)
         {
             _wrappedPerson.SetPosition(newPosition);
         }
@@ -38,6 +64,25 @@ namespace patterns_lab2_2.Models.Persons.Decorators
         public override string GetFeatures()
         {
             return _wrappedPerson.GetFeatures();
+        }
+
+        public override void HandleCommand(SquadCommand command)
+        {
+            _wrappedPerson.HandleCommand(command);
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            _wrappedPerson.TakeDamage(damage);
+        }
+
+        protected override void Die()
+        {
+        }
+
+        public override Person GetBasePerson()
+        {
+            return _wrappedPerson.GetBasePerson();
         }
     }
 }

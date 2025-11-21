@@ -33,19 +33,23 @@ namespace patterns_lab2_2.Models.Persons
             Leader = allPersons[index];
         }
 
-        public void RemovePerson(Person person)
+        public void RemovePerson(Person personToRemove)
         {
+            var baseToRemove = personToRemove.GetBasePerson();
+
             foreach (var squad in Squads)
             {
-                if (squad.Persons.Contains(person))
+                var found = squad.Persons.FirstOrDefault(p => p.GetBasePerson() == baseToRemove);
+
+                if (found != null)
                 {
-                    squad.Persons.Remove(person);
+                    squad.Persons.Remove(found);
                     break;
                 }
             }
 
-            // Якщо це був лідер, обираємо нового
-            if (Leader == person)
+            // Якщо лідер помер
+            if (Leader != null && Leader.GetBasePerson() == baseToRemove)
             {
                 AppointRandomLeader();
             }

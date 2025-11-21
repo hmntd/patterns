@@ -49,26 +49,25 @@ namespace patterns_lab2_2.Models.Factories
         {
             var key = _prototypes.Keys.ElementAt(_random.Next(_prototypes.Count));
 
-            Person basePerson = Create(key, position);
-
-            basePerson.SetMediator(mediator);
-            mediator.RegisterPerson(basePerson, clan);
+            Person person = Create(key, position);
 
             if (_random.Next(2) == 0)
             {
                 string height = _heights[_random.Next(_heights.Length)];
-                basePerson = new HeightDecorator(basePerson, height);
+                person = new HeightDecorator(person, height);
             }
 
             if (_random.Next(2) == 0)
             {
                 string clothing = _clothings[_random.Next(_clothings.Length)];
-                basePerson = new ClothingDecorator(basePerson, clothing);
+                person = new ClothingDecorator(person, clothing);
             }
 
-            basePerson.SetPosition(position);
+            person.SetMediator(mediator);
 
-            return basePerson;
+            mediator.RegisterPerson(person, clan);
+
+            return person;
         }
 
     }
