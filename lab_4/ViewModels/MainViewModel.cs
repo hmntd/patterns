@@ -181,14 +181,6 @@ namespace patterns_lab2_2.ViewModels
             );
         }
 
-        private Brush GetRandomBrush()
-        {
-            return new SolidColorBrush(Color.FromRgb(
-                (byte)_random.Next(100, 256),
-                (byte)_random.Next(100, 256),
-                (byte)_random.Next(100, 256)));
-        }
-
         private Brush GetUniqueRandomBrush()
         {
             Brush newBrush;
@@ -268,56 +260,89 @@ namespace patterns_lab2_2.ViewModels
             targetSquad.HandleCommand(command);
         }
 
-        public void PersonDied(Person person)
+        public void PersonDied(Person diedPerson)
         {
-            if (!_personClanMap.TryGetValue(person, out var clan)) return;
+            var baseDiedPerson = diedPerson.GetBasePerson();
 
-            clan.RemovePerson(person);
+            Clan clan = null;
+            Person registeredKey = null;
 
-            var clanVM = Clans.FirstOrDefault(cvm => cvm.Model == clan);
-            if (clanVM != null)
+            foreach (var kvp in _personClanMap)
             {
-                clanVM.NotifyLeaderChanged();
-
-                var pvm = clanVM.Persons.FirstOrDefault(p => p.Model == person);
-                if (pvm != null)
+                if (kvp.Key.GetBasePerson() == baseDiedPerson)
                 {
-                    clanVM.Persons.Remove(pvm);
+                    clan = kvp.Value;
+                    registeredKey = kvp.Key;
+                    break;
                 }
             }
 
-            var allPvm = AllPersons.FirstOrDefault(p => p.Model == person);
+            if (clan != null && registeredKey != null)
+            {
+                clan.RemovePerson(registeredKey);
+
+                var clanVM = Clans.FirstOrDefault(c => c.Model == clan);
+                if (clanVM != null)
+                {
+                    var pvm = clanVM.Persons.FirstOrDefault(p => p.Model.GetBasePerson() == baseDiedPerson);
+                    if (pvm != null)
+                    {
+                        clanVM.Persons.Remove(pvm);
+                    }
+
+                    foreach (var svm in clanVM.SquadVMs)
+                    {
+                        svm.UpdateName();
+                    }
+
+                    if (clan.Leader == null || clan.Leader.GetBasePerson() == baseDiedPerson)
+                    {
+                        clanVM.NotifyLeaderChanged();
+                    }
+                }
+
+                _personClanMap.Remove(registeredKey);
+            }
+
+            var allPvm = AllPersons.FirstOrDefault(p => p.Model.GetBasePerson() == baseDiedPerson);
             if (allPvm != null)
             {
                 AllPersons.Remove(allPvm);
             }
-
-            UnregisterPerson(person);
         }
 
         public Person FindNearestEnemy(Person attacker)
         {
-            if (!_personClanMap.TryGetValue(attacker, out var attackerClan))
+            var attackerBase = attacker.GetBasePerson();
+            Clan attackerClan = null;
+
+            foreach (var kvp in _personClanMap)
             {
-                return null;
+                if (kvp.Key.GetBasePerson() == attackerBase)
+                {
+                    attackerClan = kvp.Value;
+                    break;
+                }
             }
+
+            if (attackerClan == null) return null;
 
             Person nearestEnemy = null;
             double minDistance = double.MaxValue;
 
             foreach (var kvp in _personClanMap)
             {
-                Person person = kvp.Key;
-                Clan clan = kvp.Value;
+                Person potentialEnemy = kvp.Key;
+                Clan enemyClan = kvp.Value;
 
-                if (clan != attackerClan)
+                if (enemyClan != attackerClan)
                 {
-                    double distance = (attacker.Position - person.Position).Length;
+                    double distance = (attacker.Position - potentialEnemy.Position).Length;
 
                     if (distance < minDistance)
                     {
                         minDistance = distance;
-                        nearestEnemy = person;
+                        nearestEnemy = potentialEnemy;
                     }
                 }
             }

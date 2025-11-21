@@ -18,7 +18,8 @@ namespace patterns_lab2_2.ViewModels
             _model = model;
             _color = color;
 
-            Model.PositionChanged += OnModelPositionChanged;
+            Model.PositionChanged += OnModelChanged;
+            Model.HealthChanged += OnModelChanged;
         }
         public Person Model => _model;
         public double X => _model.Position.X;
@@ -35,10 +36,12 @@ namespace patterns_lab2_2.ViewModels
             set { _isLeader = value; OnPropertyChanged(); }
         }
 
-        private void OnModelPositionChanged()
+        private void OnModelChanged()
         {
             OnPropertyChanged(nameof(X));
             OnPropertyChanged(nameof(Y));
+
+            OnPropertyChanged(nameof(InfoText));
         }
 
         public string InfoText =>
