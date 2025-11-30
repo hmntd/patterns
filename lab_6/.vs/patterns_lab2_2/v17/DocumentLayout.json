@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{50F89D71-4FAE-4142-9E1B-8B2AC0BD10DB}|patterns_lab2_2.csproj|C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{50F89D71-4FAE-4142-9E1B-8B2AC0BD10DB}|patterns_lab2_2.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F89D71-4FAE-4142-9E1B-8B2AC0BD10DB}|patterns_lab2_2.csproj|c:\\users\\bazav\\source\\c#\\patterns_lab2_2\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50F89D71-4FAE-4142-9E1B-8B2AC0BD10DB}|patterns_lab2_2.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F89D71-4FAE-4142-9E1B-8B2AC0BD10DB}|patterns_lab2_2.csproj|C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\models\\persons\\decorators\\persondecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50F89D71-4FAE-4142-9E1B-8B2AC0BD10DB}|patterns_lab2_2.csproj|solutionrelative:models\\persons\\decorators\\persondecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50F89D71-4FAE-4142-9E1B-8B2AC0BD10DB}|patterns_lab2_2.csproj|C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\models\\persons\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50F89D71-4FAE-4142-9E1B-8B2AC0BD10DB}|patterns_lab2_2.csproj|solutionrelative:models\\persons\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "ViewModels\\MainViewModel.cs",
+              "ViewState": "AQIAAKIBAAAAAAAAAAAewJ8BAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T10:08:53.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-21T00:53:12.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PersonDecorator.cs",
+              "DocumentMoniker": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\Models\\Persons\\Decorators\\PersonDecorator.cs",
+              "RelativeDocumentMoniker": "Models\\Persons\\Decorators\\PersonDecorator.cs",
+              "ToolTip": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\Models\\Persons\\Decorators\\PersonDecorator.cs",
+              "RelativeToolTip": "Models\\Persons\\Decorators\\PersonDecorator.cs",
+              "ViewState": "AQIAAFUAAAAAAAAAAAASwGwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T23:27:48.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Person.cs",
+              "DocumentMoniker": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\Models\\Persons\\Person.cs",
+              "RelativeDocumentMoniker": "Models\\Persons\\Person.cs",
+              "ToolTip": "C:\\Users\\bazav\\source\\c#\\patterns_lab2_2\\Models\\Persons\\Person.cs",
+              "RelativeToolTip": "Models\\Persons\\Person.cs",
+              "ViewState": "AQIAAKIAAAAAAAAAAAAqwLsAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T23:17:19.606Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
